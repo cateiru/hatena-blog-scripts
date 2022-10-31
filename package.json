@@ -1,0 +1,16 @@
+{
+    "name": "hatena-blog-scripts",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc && uglifyjs bin/scripts.js -c -o bin/scripts.min.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "typescript": "^4.8.4",
+        "uglify-js": "^3.17.4"
+    }
+}

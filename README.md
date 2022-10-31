@@ -1,1 +1,5 @@
-# hatena-blog-scripts
+# はてなブログ Scripts
+
+## LICENSE
+
+[MIT](./LICENSE)
