@@ -63,6 +63,8 @@ class HeadingLinkCopy {
       if(target.classList.contains(HEADING_CLASS_NAME)) {
         const url = this.copyLink(target);
         this.copy(url);
+
+        window.alert("見出しのリンクをコピーしました")
       }
     });
   }
