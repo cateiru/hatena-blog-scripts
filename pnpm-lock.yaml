@@ -2,13 +2,20 @@ lockfileVersion: 5.4
 
 specifiers:
   typescript: ^4.8.4
+  typescript-bundle: ^1.0.18
   uglify-js: ^3.17.4
 
 devDependencies:
   typescript: 4.8.4
+  typescript-bundle: 1.0.18
   uglify-js: 3.17.4
 
 packages:
+
+  /typescript-bundle/1.0.18:
+    resolution: {integrity: sha512-ZtzMZPzW3bnL4c+jBjgSHxlnW9TdWQjFS5RLk4k0YJb85zv78rdslf13mKXUgHZjTeEyO8R59IQ4WqSdlEXhAw==}
+    hasBin: true
+    dev: true
 
   /typescript/4.8.4:
     resolution: {integrity: sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==}

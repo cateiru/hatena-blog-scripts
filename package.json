@@ -4,13 +4,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "tsc && uglifyjs bin/scripts.js -c -o bin/scripts.min.js"
+        "build": "tsc-bundle ./src/index.ts --outFile ./bin/scripts.js && uglifyjs bin/scripts.js -c -o bin/scripts.min.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "typescript": "^4.8.4",
+        "typescript-bundle": "^1.0.18",
         "uglify-js": "^3.17.4"
     }
 }
