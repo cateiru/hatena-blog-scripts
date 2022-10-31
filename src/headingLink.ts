@@ -13,14 +13,11 @@ function isElement(target: EventTarget): target is Element {
 }
 
 class HeadingLinkCopy {
-  private headings: NodeListOf<HTMLHeadingElement>
-
   constructor() {
     const headings = this.searchAllHeading();
     headings.forEach((v) => {
       this.addLink(v);
     });
-    this.headings = headings;
   }
 
   /**
@@ -64,9 +61,32 @@ class HeadingLinkCopy {
       }
 
       if(target.classList.contains(HEADING_CLASS_NAME)) {
-        window.alert(this.getEntryURL());
+        const url = this.copyLink(target);
+        this.copy(url);
       }
     });
+  }
+
+  /**
+   * コピーするためのURLを返す
+   *
+   * @param target - クリックした見出しの要素
+   * @returns URL
+   */
+  private copyLink(target: Element) {
+    const id = target.id;
+    const url = this.getEntryURL();
+    url.hash = id;
+    return url.toString();
+  }
+
+  /**
+   * クリップボードにコピーする
+   */
+  private copy(target: string) {
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(target);
+    }
   }
 }
 

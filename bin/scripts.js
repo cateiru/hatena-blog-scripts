@@ -30,7 +30,6 @@
                 headings.forEach(function (v) {
                     _this.addLink(v);
                 });
-                this.headings = headings;
             }
             /**
              * 記事内のすべての見出し要素を取得する
@@ -69,9 +68,30 @@
                         return;
                     }
                     if (target.classList.contains(HEADING_CLASS_NAME)) {
-                        window.alert(_this.getEntryURL());
+                        var url = _this.copyLink(target);
+                        _this.copy(url);
                     }
                 });
+            };
+            /**
+             * コピーするためのURLを返す
+             *
+             * @param target - クリックした見出しの要素
+             * @returns URL
+             */
+            HeadingLinkCopy.prototype.copyLink = function (target) {
+                var id = target.id;
+                var url = this.getEntryURL();
+                url.hash = id;
+                return url.toString();
+            };
+            /**
+             * クリップボードにコピーする
+             */
+            HeadingLinkCopy.prototype.copy = function (target) {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(target);
+                }
             };
             return HeadingLinkCopy;
         }());
