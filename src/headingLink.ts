@@ -3,9 +3,7 @@
  * リンクをクリックすると、その見出しの応じたURLがコピーされる
  */
 
-const ENTRY_SELECTOR = ".entry-content"
 const HEADING_SELECTOR = ".entry-content > h1, .entry-content > h2, .entry-content > h3, .entry-content > h4, .entry-content > h5, .entry-content > h6"
-
 const HEADING_CLASS_NAME = "heading"
 
 function isElement(target: EventTarget): target is Element {
@@ -46,12 +44,7 @@ class HeadingLinkCopy {
    * クリックを監視して、見出しをクリックした場合
    */
   public observe() {
-    const entryElement = document.querySelector<HTMLDivElement>(ENTRY_SELECTOR);
-    if(!entryElement) {
-      return;
-    }
-
-    entryElement.addEventListener("click", (e) => {
+    document.addEventListener("click", (e) => {
       const target = e.target;
       if(!target) {
         return;
@@ -88,6 +81,8 @@ class HeadingLinkCopy {
   private copy(target: string) {
     if(navigator.clipboard){
       navigator.clipboard.writeText(target);
+    } else {
+      window.prompt("リンクをコピーしてください", target)
     }
   }
 }

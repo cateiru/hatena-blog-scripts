@@ -17,7 +17,6 @@
         "use strict";
         exports.__esModule = true;
         exports.headingLinkCopy = void 0;
-        var ENTRY_SELECTOR = ".entry-content";
         var HEADING_SELECTOR = ".entry-content > h1, .entry-content > h2, .entry-content > h3, .entry-content > h4, .entry-content > h5, .entry-content > h6";
         var HEADING_CLASS_NAME = "heading";
         function isElement(target) {
@@ -55,11 +54,7 @@
              */
             HeadingLinkCopy.prototype.observe = function () {
                 var _this = this;
-                var entryElement = document.querySelector(ENTRY_SELECTOR);
-                if (!entryElement) {
-                    return;
-                }
-                entryElement.addEventListener("click", function (e) {
+                document.addEventListener("click", function (e) {
                     var target = e.target;
                     if (!target) {
                         return;
@@ -70,6 +65,7 @@
                     if (target.classList.contains(HEADING_CLASS_NAME)) {
                         var url = _this.copyLink(target);
                         _this.copy(url);
+                        window.alert("見出しのリンクをコピーしました");
                     }
                 });
             };
@@ -91,6 +87,9 @@
             HeadingLinkCopy.prototype.copy = function (target) {
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(target);
+                }
+                else {
+                    window.prompt("リンクをコピーしてください", target);
                 }
             };
             return HeadingLinkCopy;
