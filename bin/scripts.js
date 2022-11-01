@@ -65,7 +65,6 @@
                     if (target.classList.contains(HEADING_CLASS_NAME)) {
                         var url = _this.copyLink(target);
                         _this.copy(url);
-                        window.alert("見出しのリンクをコピーしました");
                     }
                 });
             };
@@ -85,12 +84,20 @@
              * クリップボードにコピーする
              */
             HeadingLinkCopy.prototype.copy = function (target) {
+                var _this = this;
                 if (navigator.clipboard) {
-                    navigator.clipboard.writeText(target);
+                    navigator.clipboard.writeText(target).then(function () {
+                        window.alert("見出しのリンクをコピーしました");
+                    })["catch"](function () {
+                        _this.selfCopy(target);
+                    });
                 }
                 else {
-                    window.prompt("リンクをコピーしてください", target);
+                    this.selfCopy(target);
                 }
+            };
+            HeadingLinkCopy.prototype.selfCopy = function (target) {
+                window.prompt("リンクをコピーしてください", target);
             };
             return HeadingLinkCopy;
         }());

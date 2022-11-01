@@ -56,8 +56,6 @@ class HeadingLinkCopy {
       if(target.classList.contains(HEADING_CLASS_NAME)) {
         const url = this.copyLink(target);
         this.copy(url);
-
-        window.alert("見出しのリンクをコピーしました")
       }
     });
   }
@@ -80,10 +78,18 @@ class HeadingLinkCopy {
    */
   private copy(target: string) {
     if(navigator.clipboard){
-      navigator.clipboard.writeText(target);
+      navigator.clipboard.writeText(target).then(() => {
+        window.alert("見出しのリンクをコピーしました");
+      }).catch(() => {
+        this.selfCopy(target);
+      });
     } else {
-      window.prompt("リンクをコピーしてください", target)
+      this.selfCopy(target);
     }
+  }
+
+  private selfCopy(target: string) {
+    window.prompt("リンクをコピーしてください", target);
   }
 }
 
